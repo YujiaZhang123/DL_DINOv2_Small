@@ -30,15 +30,15 @@ class TrainingConfig:
     patch_size: int = 8              
 
     # ----- model -----
-    embed_dim: int = 384
+    embed_dim: int = 480
     depth: int = 12
-    num_heads: int = 6
+    num_heads: int = 8
     mlp_ratio: float = 4.0
     num_prototypes: int = 8192
 
     # ----- multi-crop -----
     n_global_crops: int = 2
-    n_local_crops: int = 6
+    n_local_crops: int = 8
     global_crops_scale: tuple = (0.4, 1.0)
     local_crops_scale: tuple = (0.05, 0.3)
 

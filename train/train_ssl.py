@@ -27,12 +27,12 @@ class TrainingConfig:
     local_dir: str = "./hf_dataset"   # use local data
     split: str = "train"              # use train/ folder
     img_size: int = 96
-    patch_size: int = 16              
+    patch_size: int = 8              
 
     # ----- model -----
-    embed_dim: int = 768
+    embed_dim: int = 384
     depth: int = 12
-    num_heads: int = 12
+    num_heads: int = 6
     mlp_ratio: float = 4.0
     num_prototypes: int = 8192
 
@@ -43,9 +43,9 @@ class TrainingConfig:
     local_crops_scale: tuple = (0.05, 0.3)
 
     # ----- optimization -----
-    batch_size: int = 300             
+    batch_size: int = 250             
     num_workers: int = 26
-    epochs: int = 380
+    epochs: int = 220
     base_lr: float = 2e-4
     min_lr: float = 2e-6
     weight_decay: float = 0.04
@@ -56,7 +56,7 @@ class TrainingConfig:
 
     teacher_temp_warmup: float = 0.04
     teacher_temp_final: float = 0.07
-    teacher_temp_warmup_epochs: int = 20
+    teacher_temp_warmup_epochs: int = 15
 
     device: str = "cuda"
     output_dir: str = "checkpoints"
@@ -137,7 +137,7 @@ def build_dataloader(cfg):
         local_crops_scale=cfg.local_crops_scale,
         local_crops_number=cfg.n_local_crops,
         global_crops_size=cfg.img_size,         # 96
-        local_crops_size=cfg.img_size // 2,     # 48
+        local_crops_size=cfg.img_size // 3,     # 32
     )
 
     dataset = SSLDataset(img_paths, augment)
@@ -163,7 +163,7 @@ def build_model(cfg):
         depth=cfg.depth,
         num_heads=cfg.num_heads,
         mlp_ratio=cfg.mlp_ratio,
-        drop_path_rate=0.1,
+        drop_path_rate=0.0,
         num_prototypes=cfg.num_prototypes,
         n_global_crops=cfg.n_global_crops,
         n_local_crops=cfg.n_local_crops,
@@ -251,7 +251,7 @@ def train(cfg: TrainingConfig):
 
         print(f"[epoch {epoch+1}] avg_loss = {epoch_loss/steps_per_epoch:.4f}")
 
-        if epoch == 0 or (epoch + 1) % 10 == 0 or (epoch + 1) == cfg.epochs:
+        if epoch == 0 or (epoch + 1) % 5 == 0 or (epoch + 1) == cfg.epochs:
             ckpt = {
                 "epoch": epoch + 1,
                 "student_backbone": model.student_backbone.state_dict(),

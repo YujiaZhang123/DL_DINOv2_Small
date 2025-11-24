@@ -1,0 +1,16 @@
+# Core ML libraries
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.23
+tqdm>=4.65
+
+#datasets
+datasets
+# Image & augmentation
+Pillow>=10.0
+# HuggingFace dataset download
+huggingface_hub>=0.20.0
+# Utility
+dataclasses; python_version < "3.7"
+
+

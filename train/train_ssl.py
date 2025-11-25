@@ -30,7 +30,7 @@ class TrainingConfig:
     patch_size: int = 8              
 
     # ----- model -----
-    embed_dim: int = 420
+    embed_dim: int = 408
     depth: int = 12
     num_heads: int = 6
     mlp_ratio: float = 4.0
@@ -45,7 +45,7 @@ class TrainingConfig:
     # ----- optimization -----
     batch_size: int = 200             
     num_workers: int = 20
-    epochs: int = 260
+    epochs: int = 230
     base_lr: float = 2e-4
     min_lr: float = 2e-6
     weight_decay: float = 0.04

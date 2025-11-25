@@ -13,7 +13,7 @@ class TransformerBlock(nn.Module):
         embed_dim: int,
         num_heads: int,
         mlp_ratio: float = 4.0,
-        drop_path: float = 0.1,
+        drop_path: float = 0.03,
         use_layerscale: bool = True,
     ):
         super().__init__()

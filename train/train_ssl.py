@@ -163,7 +163,7 @@ def build_model(cfg):
         depth=cfg.depth,
         num_heads=cfg.num_heads,
         mlp_ratio=cfg.mlp_ratio,
-        drop_path_rate=0.035,
+        drop_path_rate=0.03,
         num_prototypes=cfg.num_prototypes,
         n_global_crops=cfg.n_global_crops,
         n_local_crops=cfg.n_local_crops,

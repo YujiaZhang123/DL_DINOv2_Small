@@ -28,11 +28,11 @@ class VisionTransformer(nn.Module):
         self,
         img_size: int = 96,
         patch_size: int = 8,
-        embed_dim: int = 408,
+        embed_dim: int = 420,
         depth: int = 12,
         num_heads: int = 6,
         mlp_ratio: float = 4.0,
-        drop_path_rate: float = 0.025,
+        drop_path_rate: float = 0.035,
         dropout_rate: float = 0.0,     
         use_patchnorm: bool = True,    
         use_layerscale: bool = True,  
@@ -46,7 +46,7 @@ class VisionTransformer(nn.Module):
             embed_dim=embed_dim,
         )
 
-        num_patches = self.patch_embed.num_patches  # 96x96 -> 6×6=36 tokens
+        num_patches = self.patch_embed.num_patches  
 
         # Optional PatchNorm
         self.use_patchnorm = use_patchnorm

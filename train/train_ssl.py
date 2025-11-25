@@ -30,11 +30,11 @@ class TrainingConfig:
     patch_size: int = 8              
 
     # ----- model -----
-    embed_dim: int = 480
+    embed_dim: int = 416
     depth: int = 12
-    num_heads: int = 8
+    num_heads: int = 6
     mlp_ratio: float = 4.0
-    num_prototypes: int = 8192
+    num_prototypes: int = 4096
 
     # ----- multi-crop -----
     n_global_crops: int = 2
@@ -44,7 +44,7 @@ class TrainingConfig:
 
     # ----- optimization -----
     batch_size: int = 200             
-    num_workers: int = 20
+    num_workers: int = 32
     epochs: int = 220
     base_lr: float = 2e-4
     min_lr: float = 2e-6
@@ -163,7 +163,7 @@ def build_model(cfg):
         depth=cfg.depth,
         num_heads=cfg.num_heads,
         mlp_ratio=cfg.mlp_ratio,
-        drop_path_rate=0.0,
+        drop_path_rate=0.05,
         num_prototypes=cfg.num_prototypes,
         n_global_crops=cfg.n_global_crops,
         n_local_crops=cfg.n_local_crops,

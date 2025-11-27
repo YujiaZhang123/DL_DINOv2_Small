@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from layers.attention import MultiHeadAttention
 from layers.drop_path import DropPath
-from layers.swiglu_ffn import SwiGLUFFN
+from layers.swiglu_ffn import mlp
 
 
 class TransformerBlock(nn.Module):
@@ -13,7 +13,7 @@ class TransformerBlock(nn.Module):
         embed_dim: int,
         num_heads: int,
         mlp_ratio: float = 4.0,
-        drop_path: float = 0.035,
+        drop_path: float = 0.08,
         use_layerscale: bool = True,
     ):
         super().__init__()
@@ -26,7 +26,7 @@ class TransformerBlock(nn.Module):
         # --- feed-forward branch ---
         self.norm2 = nn.LayerNorm(embed_dim)
         hidden_dim = int(embed_dim * mlp_ratio)
-        self.ffn = SwiGLUFFN(embed_dim, hidden_dim)
+        self.ffn = MLP(embed_dim, hidden_dim)
         self.drop_path2 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
 
         # -------- LayerScale --------

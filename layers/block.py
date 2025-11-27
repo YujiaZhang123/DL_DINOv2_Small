@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from layers.attention import MultiHeadAttention
 from layers.drop_path import DropPath
-from layers.swiglu_ffn import mlp
+from layers.mlp import MLP
 
 
 class TransformerBlock(nn.Module):

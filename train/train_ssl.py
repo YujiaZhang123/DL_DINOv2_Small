@@ -58,7 +58,7 @@ class TrainingConfig:
 
     teacher_temp_warmup: float = 0.04
     teacher_temp_final: float = 0.07
-    teacher_temp_warmup_epochs: int = 33
+    teacher_temp_warmup_epochs: int = 30
 
     device: str = "cuda"
     output_dir: str = "checkpoints"

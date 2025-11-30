@@ -239,7 +239,6 @@ def train(cfg: TrainingConfig):
     # ----- build model -----
     model = build_model(cfg).to(device)
 
-    # 只把 student 包进 DDP 也可以，这里图简单，直接包整个 SSLArch
     if distributed:
         model = DDP(
             model,
